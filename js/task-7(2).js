@@ -21,17 +21,19 @@ const account = {
   deposit(amount) {
     this.createTransaction(amount, Transaction.DEPOSIT);
     this.balance += amount;
+
+    return 'Ваш счет пополнен';
   },
 
   withdraw(amount) {
 
-    if (this.balance < amount) {
-      const message = 'Снятие такой суммы не возможно, недостаточно средств.';
-    
-      return message;
+    if (this.balance < amount) {    
+      return 'Снятие такой суммы не возможно, недостаточно средств.';
     }
     this.createTransaction(amount, Transaction.WITHDRAW);
     this.balance -= amount;
+
+    return 'Деньги сняты';
   },
 
   getBalance() {
@@ -67,11 +69,11 @@ const account = {
 
 const depositInputRef = document.querySelector('input[name="deposit"]');
 const depositBtnRef = document.querySelector('button[name="depositBtn"]');
-depositBtnRef.addEventListener('click', () => account.deposit(Number(depositInputRef.value)));
+depositBtnRef.addEventListener('click', () => console.log(account.deposit(Number(depositInputRef.value))));
 
 const withdrawInputRef = document.querySelector('input[name="withdraw"]');
 const withdrawBtnRef = document.querySelector('button[name="withdrawBtn"]');
-withdrawBtnRef.addEventListener('click', () => account.withdraw(Number(withdrawInputRef.value)));
+withdrawBtnRef.addEventListener('click', () => console.log(account.withdraw(Number(withdrawInputRef.value))));
 
 const balanceBtnRef = document.querySelector('button[name="balanceBtn"]');
 balanceBtnRef.addEventListener('click', () => console.log(account.getBalance()));
