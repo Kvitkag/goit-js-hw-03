@@ -17,6 +17,14 @@ const calculateTotalPrice = function (allProducts, productName) {
     }
 
     return totalPrice;
+
+    // better variant 
+
+    // for (const { name, price, quantity } of allProducts) {
+    //     if (name === productName) {
+    //         return price * quantity;
+    //     }
+    // }
 };
 
 console.log(calculateTotalPrice(products, 'Радар')); // 5200
